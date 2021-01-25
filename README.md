@@ -20,7 +20,7 @@ Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.
 A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables. 
 
 **Sync clock across boots**  
-After you have rebuilt system by installing multiple oeprating systems, and if clock is out of sync across different OS boot, you can sync the clock using:  
+After you have rebuilt system by installing multiple oeprating systems, and if clock is out of sync across different OS boots, you can sync the clock by setting "RTC in local TZ" to yes using the following:  
 
 ```
 timedatectl set-local-rtc 1 --adjust-system-clock
