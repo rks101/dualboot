@@ -22,6 +22,8 @@ A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-differ
 **Sync clock across boots**  
 After you have rebuilt system by installing multiple oeprating systems, and if clock is out of sync across different OS boot, you can sync the clock using:  
 
+```
 timedatectl set-local-rtc 1 --adjust-system-clock
 
 timedatectl
+```
