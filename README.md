@@ -18,3 +18,10 @@ Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.
 [UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on Ubuntu community gives some insights into UEFI booting, dual boot and secure boot.  
 
 A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables. 
+
+**Sync clock across boots**  
+After you have rebuilt system by installing multiple oeprating systems, and if clock is out of sync across different OS boot, you can sync the clock using:  
+
+timedatectl set-local-rtc 1 --adjust-system-clock
+
+timedatectl
