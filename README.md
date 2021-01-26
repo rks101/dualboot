@@ -17,7 +17,31 @@ Even till 2020, dual boot systems are not shipped. There is no reason to worry a
 Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.  
 [UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on Ubuntu community gives some insights into UEFI booting, dual boot and secure boot.  
 
-A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables. 
+A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables.  
+
+How can we see partition table using command line?  
+```
+$ fdisk -l 
+............
+Disk /dev/sda: 931.53 GiB, 1000204886016 bytes, 1953525168 sectors
+Disk model: WDC WD10SPZX-75Z
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+Disklabel type: gpt
+Disk identifier: 082Z74ZF-EZ78-4Z77-9ZD1-6Z110Z47CFZE
+
+Device          Start        End    Sectors   Size Type
+/dev/sda1        2048     923647     921600   450M Windows recovery environment
+/dev/sda2      923648    1128447     204800   100M EFI System
+/dev/sda3     1128448    1161215      32768    16M Microsoft reserved
+/dev/sda4     1161216  306162323  305001108 145.4G Microsoft basic data
+/dev/sda5   306163712  307199999    1036288   506M Windows recovery environment
+/dev/sda6   307202048 1331202047 1024000000 488.3G Microsoft basic data
+/dev/sda7  1331202048 1393702911   62500864  29.8G Linux swap
+/dev/sda8  1393702912 1953523711  559820800   267G Linux filesystem
+```
+In the output of fdisk, llok for **Disk /dev/sda** ignore entries listed for loop devices.  
 
 **Sync clock across boots**  
 After you have rebuilt system by installing multiple oeprating systems, and if clock is out of sync across different OS boots, you can sync the clock by setting "RTC in local TZ" to yes using the following:  
