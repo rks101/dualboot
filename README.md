@@ -6,6 +6,7 @@ Most recommended setup for dual boot (Windows + Linux):
 Install Windows first on your desktop/laptop. While installing Windows keep a unformatted partition of 20 GB or more for Linux distribution and a common partition of suitable size. If you have Windows pre-installed, and it is on single disk (HDD/SSD), shrink volume carefully to create space for Linux and the common partition.  
 Install Linux (try Ubuntu) along side Windows. You should keep a common partition that is accessible or shared for both OS.  
 
+[Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) has listed out some steps. Credits: Ankit Gupta  
 
 **About Virtual install**  
 If you are scared of dual boot or not sure where it leads to, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware WorkStation. Once you get familiar and hands-on with Linux, you can dual boot your system.  
