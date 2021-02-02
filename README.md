@@ -20,6 +20,8 @@ Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.
 
 A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables.  
 
+----
+
 How can we see partition table using command line?  
 ```
 $ fdisk -l 
@@ -54,6 +56,7 @@ timedatectl
 ```
 
 ----
+
 **System not booting to Linux, only booting to Windows**  
 
 After dual boot (Windows and Linux), if the system is booting to Windows OS only, you should check two things first.  
@@ -62,9 +65,11 @@ After dual boot (Windows and Linux), if the system is booting to Windows OS only
 
 Apart from these two, it is possible that boot loader did not install correctly. Also, this may happen if you had to reinstall Windows post dual boot.  
 You should repair boot loader.  
+
 ----
 
 **How to repair Boot Loader**
 
 You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/) utiity with GUI. Using bootable USB drive, boot your system and install Boot Repair. Here is another tutorial to [repair GRUB](https://linuxhint.com/ubuntu_boot_repair_tutorial/) for most of the times.  
+
 ----
