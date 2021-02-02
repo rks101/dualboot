@@ -52,3 +52,19 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 
 timedatectl
 ```
+
+----
+**System not booting to Linux, only booting to Windows**  
+
+After dual boot (Windows and Linux), if the system is booting to Windows OS only, you should check two things first.  
+ (i) BIOS: see if Windows Boot manager (single boot loader) is selected to boot  
+(ii) Fast Startup set in Windows => Control Panel => Power Options: you should uncheck Fast Startup option. With this, the system performs a clean cold boot across reboots and dual boot loader (GRUB/LILO) wakes up to give you options and you can select the OS to boot with.  
+
+Apart from these two, it is possible that boot loader did not install correctly. Also, this may happen if you had to reinstall Windows post dual boot.  
+You should repair boot loader.  
+----
+
+**How to repair Boot Loader**
+
+You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/) utiity with GUI. Using bootable USB drive, boot your system and install Boot Repair. Here is another tutorial to [repair GRUB](https://linuxhint.com/ubuntu_boot_repair_tutorial/) for most of the times.  
+----
