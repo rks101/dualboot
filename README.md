@@ -8,6 +8,8 @@ Install Linux (try Ubuntu) along side Windows. You should keep a common partitio
 
 [Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) has listed out some steps. Credits: Ankit Gupta  
 
+[Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)  
+
 **About Virtual install**  
 If you are scared of dual boot or not sure where it leads to, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware WorkStation. Once you get familiar and hands-on with Linux, you can dual boot your system.  
 
