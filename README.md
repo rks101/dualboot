@@ -74,3 +74,7 @@ Apart from these two, it is possible that boot loader did not install correctly.
 You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/) utiity with GUI. Using bootable USB drive, boot your system and install Boot Repair. Here is another tutorial to [repair GRUB](https://linuxhint.com/ubuntu_boot_repair_tutorial/) for most of the times.  
 
 ----
+
+Password recovery options: 
+[Win 10[(https://www.top-password.com/knowledge/forgot-windows-10-local-administrator-password.html)
+https://www.wimware.com/how-to/reset-windows-10-enterprise-password.html
