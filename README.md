@@ -102,8 +102,8 @@ Number  Start   End     Size    File system     Name                          Fl
 
 TODO: Solving this read-only (or sometimes disappeared partition in GUI) situation is not trivial, and it may be irrecoverable. At worst: you may need to reinstall Windows at the cost of loosing some files. Before reinstall, there are certain steps to try. It is possible, none of them work.    
 
-* [Mount NTFS partition in Linux](https://phoenixnap.com/kb/mount-ntfs-linux)   
-* []
+* [Mount NTFS partition in Linux to backup](https://phoenixnap.com/kb/mount-ntfs-linux)   
+* [Recovery options in Windows](https://support.microsoft.com/en-us/windows/recovery-options-in-windows-31ce2444-7de3-818c-d626-e3b5a3024da5)   
 ----
 
 **System not booting to Linux, only booting to Windows**  
