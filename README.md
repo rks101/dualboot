@@ -24,9 +24,12 @@ A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-differ
 
 ----
 
-How can we see partition table using command line?  
+How can we see partition table using command line?   
+
+Note:- This output shows a nice example of disk virtualisation - a single physical disk /dev/sda of 1000204886016 bytes partitioned into multiple virtual disks/drives/volumes/partitions/LPARs.    
+
 ```
-$ fdisk -l 
+$ sudo fdisk -l 
 ............
 Disk /dev/sda: 931.53 GiB, 1000204886016 bytes, 1953525168 sectors
 Disk model: WDC WD10SPZX-75Z
@@ -40,11 +43,11 @@ Device          Start        End    Sectors   Size Type
 /dev/sda1        2048     923647     921600   450M Windows recovery environment
 /dev/sda2      923648    1128447     204800   100M EFI System
 /dev/sda3     1128448    1161215      32768    16M Microsoft reserved
-/dev/sda4     1161216  306162323  305001108 145.4G Microsoft basic data
+/dev/sda4     1161216  306162323  305001108 145.4G Microsoft basic data                 <= Windows partition, NTFS 
 /dev/sda5   306163712  307199999    1036288   506M Windows recovery environment
-/dev/sda6   307202048 1331202047 1024000000 488.3G Microsoft basic data
-/dev/sda7  1331202048 1393702911   62500864  29.8G Linux swap
-/dev/sda8  1393702912 1953523711  559820800   267G Linux filesystem
+/dev/sda6   307202048 1331202047 1024000000 488.3G Microsoft basic data                 <= NTFS, accessible from both OS 
+/dev/sda7  1331202048 1393702911   62500864  29.8G Linux swap                           <= Linux Swap 
+/dev/sda8  1393702912 1953523711  559820800   267G Linux filesystem                     <= Linux everyday partition 
 ```
 In the output of fdisk, llok for **Disk /dev/sda** ignore entries listed for loop devices.  
 
@@ -56,7 +59,51 @@ timedatectl set-local-rtc 1 --adjust-system-clock
 
 timedatectl
 ```
+---- 
 
+**Locked or read-only Windows partition or a locked NTFS partition**    
+
+Sometimes a certain partition cannot be accessed or it is read-only, no write or update is alowed in a dual booted system with Windows. An unclean shutdown from Windows filesystem or hibernation or fast boot enabled in Windows or incomplete update possibly gone wrong or similar event can render an NTFS/FAT partition exclusively locked or read-only or inaccessible.   
+
+```
+rps@Latitude-3490:~$ sudo -i
+[sudo] password for rps: 
+root@Latitude-3490:~# mount -t ntfs -o rw /dev/sda6 /mnt/shared
+Mount is denied because the NTFS volume is already exclusively opened.
+The volume may be already mounted, or another software may use it which
+could be identified for example by the help of the 'fuser' command.
+[1]+  Done                    $PANGPA start
+root@Latitude-3490:~# id
+uid=0(root) gid=0(root) groups=0(root)
+root@Latitude-3490:~# chown 1000:1000 /mnt/shared
+chown: changing ownership of '/mnt/shared': Read-only file system
+root@Latitude-3490:~# 
+
+```
+See the output of parted below, fdisk is listed above of the same system for reference:  
+```
+rps@Latitude-3490:~$ sudo parted -l
+Model: ATA WDC WD10SPZX-75Z (scsi)
+Disk /dev/sda: 1000GB
+Sector size (logical/physical): 512B/4096B
+Partition Table: gpt
+Disk Flags: 
+
+Number  Start   End     Size    File system     Name                          Flags
+ 1      1049kB  473MB   472MB   ntfs            Basic data partition          hidden, diag
+ 2      473MB   578MB   105MB   fat32           EFI system partition          boot, esp
+ 3      578MB   595MB   16.8MB                  Microsoft reserved partition  msftres
+ 4      595MB   157GB   156GB   ntfs            Basic data partition          msftdata
+ 5      157GB   157GB   531MB   ntfs                                          hidden, diag
+ 6      157GB   682GB   524GB   ntfs            Basic data partition          msftdata
+ 7      682GB   714GB   32.0GB  linux-swap(v1)                                swap
+ 8      714GB   1000GB  287GB   ext4
+```
+
+TODO: Solving this read-only (or sometimes disappeared partition in GUI) situation is not trivial, and it may be irrecoverable. At worst: you may need to reinstall Windows at the cost of loosing some files. Before reinstall, there are certain steps to try. It is possible, none of them work.    
+
+* [Mount NTFS partition in Linux](https://phoenixnap.com/kb/mount-ntfs-linux)   
+* []
 ----
 
 **System not booting to Linux, only booting to Windows**  
