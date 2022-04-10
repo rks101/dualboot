@@ -65,12 +65,24 @@ timedatectl
 
 Sometimes a certain partition cannot be accessed or it is read-only, no write or update is alowed in a dual booted system with Windows. An unclean shutdown from Windows filesystem or hibernation or fast boot enabled in Windows or incomplete update possibly gone wrong or similar event can render an NTFS/FAT partition exclusively locked or read-only or inaccessible.   
 
+Trying to access NTFS partition using mount, see the message:   
+```
+rps@Latitude-3490:~$ sudo mkdir /mnt/windows
+rps@Latitude-3490:~$ sudo mount -t ntfs /dev/sda6 /mnt/shared
+The disk contains an unclean file system (0, 0).                        <=
+Metadata kept in Windows cache, refused to mount.
+Falling back to read-only mount because the NTFS partition is in an
+unsafe state. Please resume and shutdown Windows fully (no hibernation  <= 
+or fast restarting.)                                                    <=
+Could not mount read-write, trying read-only
+```
+Another attemp:   
 ```
 rps@Latitude-3490:~$ sudo -i
 [sudo] password for rps: 
 root@Latitude-3490:~# mount -t ntfs -o rw /dev/sda6 /mnt/shared
-Mount is denied because the NTFS volume is already exclusively opened.
-The volume may be already mounted, or another software may use it which
+Mount is denied because the NTFS volume is already exclusively opened.  <=
+The volume may be already mounted, or another software may use it which <=
 could be identified for example by the help of the 'fuser' command.
 [1]+  Done                    $PANGPA start
 root@Latitude-3490:~# id
