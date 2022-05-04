@@ -121,7 +121,7 @@ TODO: Solving this read-only (or sometimes disappeared partition in GUI) situati
 **System not booting to Linux, only booting to Windows**  
 
 After dual boot (Windows and Linux), if the system is booting to Windows OS only, you should check two things first.  
- (i) BIOS: check if Windows Boot manager (single boot loader) is selected to boot or sequence boot loaders   
+ (i) BIOS: check if Windows Boot manager (single boot loader) is selected to boot or sequence boot loaders with first boot loader from linux (dual boot loader). GRUB allows chaining boot loaders.   
 (ii) Fast Startup set in Windows => Control Panel => Power Options: you should uncheck Fast Startup option. With this, the system performs a clean cold boot across reboots and dual boot loader (GRUB/LILO) wakes up to give you options and you can select the OS to boot with.  
 
 Apart from these two, it is possible that boot loader did not install correctly. Also, this may happen if you had to reinstall Windows post dual boot. You should repair boot loader.  
