@@ -124,7 +124,9 @@ After dual boot (Windows and Linux), if the system is booting to Windows OS only
  (i) BIOS: check if Windows Boot manager (single boot loader) is selected to boot or sequence boot loaders with first boot loader from linux (dual boot loader). GRUB allows chaining boot loaders.   
 (ii) Fast Startup set in Windows => Control Panel => Power Options: you should uncheck Fast Startup option. With this, the system performs a clean cold boot across reboots and dual boot loader (GRUB/LILO) wakes up to give you options and you can select the OS to boot with.  
 
-Apart from these two, it is possible that boot loader did not install correctly. Also, this may happen if you had to reinstall Windows post dual boot. You should repair boot loader.  
+Apart from these two, it is possible that boot loader did not install correctly. Also, this may happen if you had to reinstall Windows post dual boot. You should repair boot loader.   
+
+Before you reinstall Windows, try auto repair / reset PC / uninstall recent feature update / system restore to last safe point. One of this may work or none of them may work. If you are keeping this os, you may disable auto updates.   
 
 ----
 
