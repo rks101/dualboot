@@ -134,6 +134,6 @@ You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2
 
 ----
 
-Password recovery options: 
-[Win 10[(https://www.top-password.com/knowledge/forgot-windows-10-local-administrator-password.html)
-https://www.wimware.com/how-to/reset-windows-10-enterprise-password.html
+Password recovery options:   
+[Win 10](https://www.top-password.com/knowledge/forgot-windows-10-local-administrator-password.html) 
+and [another link](https://www.wimware.com/how-to/reset-windows-10-enterprise-password.html)   
