@@ -133,6 +133,9 @@ Before you reinstall Windows, try auto repair / reset PC / uninstall recent feat
 **How to repair Boot Loader**
 
 You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/) utiity with GUI. Using bootable USB drive, boot your system and install Boot Repair. Here is another tutorial to [repair GRUB](https://linuxhint.com/ubuntu_boot_repair_tutorial/) for most of the times.  
+Despite all these, sometimes things happen we hope they do not happen. Dual boot systems are not shipped and they are not tested for dual boot normally. Yet all that magic works. Do not loose heart, do not shout at people, if system crashes and you cannot recover. Rebuild it.    
+
+Recently, I lost some data related to my PhD and work after a keyboard repair. Locked NVram detected on Ubuntu and boot-repair could not repair. I fact it was not recognizing Ubuntu boot itself, partition remained read-only. I had to rebuild system.   
 
 ----
 
