@@ -52,7 +52,7 @@ Even till 2024, dual boot systems are not shipped. There is no reason to worry a
 
 ## Power on to OS Desktop or Console   
 
-Q. What steps are involved from Power on to getting an OS Desktop?     
+Q. What steps are involved from Power on to getting an OS Desktop or console login?     
 
 Hint: OS, Boot Leader, BIOS/UEFI, Power On, OS Desktop/console, Loading Sub-systems, Boot Loader Chain    
 
