@@ -1,30 +1,42 @@
 # dualboot
-Challenges and discussions for dual boot systems
+Discussions for dual boot systems.    
 
+## Recommended Dual Boot setup   
+The most recommended setup for dual boot is Windows + Linux (Ubuntu/Fedora/RedHat/Mint).   
 
-Most recommended setup for dual boot (Windows + Linux):  
-Install Windows first on your desktop/laptop. While installing Windows keep a unformatted partition of 20 GB or more for Linux distribution and a common partition of suitable size. If you have Windows pre-installed, and it is on single disk (HDD/SSD), shrink volume carefully to create space for Linux and the common partition.  
-Install Linux (try Ubuntu) along side Windows. You should keep a common partition that is accessible or shared for both OS.  
+Install Windows first on your desktop/laptop. While installing Windows, keep an unformatted partition of 30 GB or more for Linux distribution and a shared data partition of suitable size. If you have Windows pre-installed, and it is on a single disk (HDD/SSD), shrink the volume carefully using the Computer Management utility to create space for Linux and the shared partition.  
+Install Linux (try Ubuntu) alongside Windows. You should keep a shared partition that is accessible or shared for both OSes.  
 
-[Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) has listed out some steps. Credits: Ankit Gupta  
+[Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) has listed out some steps. Credits: Ankit Gupta     
 
-[Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)  
+[Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)    
+
+## MBR v/s GPT    
+A HDD/SSD/SCSI disk should be partitioned (to define disk structure) and formatted (to create file system) before it can be used.    
+
+Master Boot Record (MBR) and GUID Partition Table (GPT) are two partitioning styles.   
+
+MBR allowed only four primary partitions on a disk and worked with disk sizes up to 2TB. MBR had a peculiar limitation. MBR allowed having a boot sector (for using the first boot loader) in the initial geometry of the disk (say first 1024 cylinders). Now, if this information is overwritten, you need to recreate or "repair" boot loader information. MBR was dependent on BIOS.     
+
+When using GPT, these limitations are mainly dependent on the Operating system and file system. Windows may allow 128 partitions and much larger file sizes. GPT stores a random string for each disk partition, and the boot-related details are spread across disk geometry, having multiple copies. GPT relies on UEFI.    
+
 
 **About Virtual install**  
-If you are scared of dual boot or not sure where it leads to, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware WorkStation. Once you get familiar and hands-on with Linux, you can dual boot your system.  
+If you are unsure of dual boot, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware Workstation. Once you get familiar and hands-on with Linux, you can dual-boot your system.   
 
-Even till 2020, dual boot systems are not shipped. There is no reason to worry about dual boot in 2020 as Ubuntu and other distribution communities have fairly good support for this.   
+Even till 2024, dual boot systems are not shipped. There is no reason to worry about dual boot, as Ubuntu and other distribution communities have pretty good support for this.   
 
 
 **On BIOS v/s UEFI**  
 Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.  
-[UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on Ubuntu community gives some insights into UEFI booting, dual boot and secure boot.  
+[UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on the Ubuntu community gives some insights into UEFI booting, dual boot, and secure boot.  
 
 A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables.  
 
 ----
 
-How can we see partition table using command line?   
+## Partition Table   
+How can we see the partition table using the command line?   
 
 Note:- This output shows a nice example of disk virtualisation - a single physical disk /dev/sda of 1000204886016 bytes partitioned into multiple virtual disks/drives/volumes/partitions/LPARs.    
 
@@ -49,10 +61,10 @@ Device          Start        End    Sectors   Size Type
 /dev/sda7  1331202048 1393702911   62500864  29.8G Linux swap                           <= Linux Swap 
 /dev/sda8  1393702912 1953523711  559820800   267G Linux filesystem                     <= Linux everyday partition 
 ```
-In the output of fdisk, llok for **Disk /dev/sda** ignore entries listed for loop devices.  
+In the output of fdisk, look for **Disk /dev/sda** and ignore entries listed for loop devices.   
 
 **Sync clock across boots**  
-After you have rebuilt system by installing multiple oeprating systems, and if clock is out of sync across different OS boots, you can sync the clock by setting "RTC in local TZ" to yes using the following:  
+After you have rebuilt the system by installing multiple operating systems, and if the clock is out of sync across different OS boots, you can sync the clock by setting "RTC in local TZ" to yes using the following:  
 
 ```
 timedatectl set-local-rtc 1 --adjust-system-clock
@@ -61,9 +73,9 @@ timedatectl
 ```
 ---- 
 
-**Locked or read-only Windows partition or a locked NTFS partition**    
+## Locked or read-only Windows partition or a locked NTFS partition    
 
-Sometimes a certain partition cannot be accessed or it is read-only, no write or update is alowed in a dual booted system with Windows. An unclean shutdown from Windows filesystem or hibernation or fast boot enabled in Windows or incomplete update possibly gone wrong or similar event can render an NTFS/FAT partition exclusively locked or read-only or inaccessible.   
+Sometimes a particular partition cannot be accessed or it is read-only, no write or update is alowed in a dual booted system with Windows. An unclean shutdown from the Windows filesystem or hibernation or fast boot enabled in Windows or incomplete update possibly gone wrong or a similar event can render an NTFS/FAT partition exclusively locked or read-only or inaccessible.   
 
 Trying to access NTFS partition using mount, see the message:   
 ```
@@ -120,7 +132,7 @@ TODO: Solving this read-only (or sometimes disappeared partition in GUI) situati
 
 **System not booting to Linux, only booting to Windows**  
 
-After dual boot (Windows and Linux), if the system is booting to Windows OS only, you should check two things first.  
+After dual boot (Windows and Linux), if the system is booting to Windowcertains OS only, you should check two things first.  
  (i) BIOS: check if Windows Boot manager (single boot loader) is selected to boot or sequence boot loaders with first boot loader from linux (dual boot loader). GRUB allows chaining boot loaders.   
 (ii) Fast Startup set in Windows => Control Panel => Power Options: you should uncheck Fast Startup option. With this, the system performs a clean cold boot across reboots and dual boot loader (GRUB/LILO) wakes up to give you options and you can select the OS to boot with.  
 
