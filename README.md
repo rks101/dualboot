@@ -1,7 +1,11 @@
 # dualboot
 Discussions for dual boot systems.    
 
-## Recommended Dual Boot setup   
+    * [Dualboot](#dualboot)
+       * [Recommeded Dual Boot Setup](#recommednded-dual-boot-setup)
+       
+
+## Recommended Dual Boot Setup   
 The most recommended setup for dual boot is Windows + Linux (Ubuntu/Fedora/RedHat/Mint).   
 
 Install Windows first on your desktop/laptop. While installing Windows, keep an unformatted partition of 30 GB or more for Linux distribution and a shared data partition of suitable size. If you have Windows pre-installed, and it is on a single disk (HDD/SSD), shrink the volume carefully using the Computer Management utility to create space for Linux and the shared partition.  
@@ -20,18 +24,21 @@ MBR allowed only four primary partitions on a disk and worked with disk sizes up
 
 When using GPT, these limitations are mainly dependent on the Operating system and file system. Windows may allow 128 partitions and much larger file sizes. GPT stores a random string for each disk partition, and the boot-related details are spread across disk geometry, having multiple copies. GPT relies on UEFI.    
 
+----
 
-**About Virtual install**  
-If you are unsure of dual boot, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware Workstation. Once you get familiar and hands-on with Linux, you can dual-boot your system.   
+## On BIOS v/s UEFI  
 
-Even till 2024, dual boot systems are not shipped. There is no reason to worry about dual boot, as Ubuntu and other distribution communities have pretty good support for this.   
-
-
-**On BIOS v/s UEFI**  
 Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.  
 [UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on the Ubuntu community gives some insights into UEFI booting, dual boot, and secure boot.  
 
 A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables.  
+
+----
+
+## Virtual install   
+If you are unsure of dual boot, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware Workstation. Once you get familiar and hands-on with Linux, you can dual-boot your system.   
+
+Even till 2024, dual boot systems are not shipped. There is no reason to worry about dual boot, as Ubuntu and other distribution communities have good support for this.   
 
 ----
 
@@ -63,7 +70,9 @@ Device          Start        End    Sectors   Size Type
 ```
 In the output of fdisk, look for **Disk /dev/sda** and ignore entries listed for loop devices.   
 
-**Sync clock across boots**  
+----
+
+## Sync clock across boots  
 After you have rebuilt the system by installing multiple operating systems, and if the clock is out of sync across different OS boots, you can sync the clock by setting "RTC in local TZ" to yes using the following:  
 
 ```
@@ -130,7 +139,7 @@ TODO: Solving this read-only (or sometimes disappeared partition in GUI) situati
 * [Recovery options in Windows](https://support.microsoft.com/en-us/windows/recovery-options-in-windows-31ce2444-7de3-818c-d626-e3b5a3024da5)   
 ----
 
-**System not booting to Linux, only booting to Windows**  
+## System not booting to Linux, only booting to Windows   
 
 After dual boot (Windows and Linux), if the system is booting to Windowcertains OS only, you should check two things first.  
  (i) BIOS: check if Windows Boot manager (single boot loader) is selected to boot or sequence boot loaders with first boot loader from linux (dual boot loader). GRUB allows chaining boot loaders.   
@@ -142,7 +151,7 @@ Before you reinstall Windows, try auto repair / reset PC / uninstall recent feat
 
 ----
 
-**How to repair Boot Loader**
+## How to repair Boot Loader   
 
 You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/) utiity with GUI. Using bootable USB drive, boot your system and install Boot Repair. Here is another tutorial to [repair GRUB](https://linuxhint.com/ubuntu_boot_repair_tutorial/) for most of the times.  
 Despite all these, sometimes things happen we hope they do not happen. Dual boot systems are not shipped and they are not tested for dual boot normally. Yet all that magic works. Do not loose heart, do not shout at people, if system crashes and you cannot recover. Rebuild it.    
@@ -151,6 +160,8 @@ Recently, I lost some data related to my PhD and work after a keyboard repair. L
 
 ----
 
-Password recovery options:   
+## Password recovery options   
 [Win 10](https://www.top-password.com/knowledge/forgot-windows-10-local-administrator-password.html) 
 and [another link](https://www.wimware.com/how-to/reset-windows-10-enterprise-password.html)   
+
+----
