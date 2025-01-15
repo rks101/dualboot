@@ -6,6 +6,7 @@ Discussions for dual boot systems.
       * [On MBR vs GPT](#on-mbr-vs-GPT)
       * [On BIOS vs UEFI](#on-bios-vs-uefi)
       * [Virtual Install](#virtual-install)
+      * [Power on to OS Desktop or Console](#power-on-to-os-desktop-or-console)
       * [Partition Table](#partition-table)
       * [Sync clock across boots](#sync-clock-across-boots)
       * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read-only-Windows-partition-or-locked-NTFS-partition)
@@ -48,6 +49,14 @@ If you are unsure of dual boot, you can install Linux on a VM using some virtual
 Even till 2024, dual boot systems are not shipped. There is no reason to worry about dual boot, as Ubuntu and other distribution communities have good support for this.   
 
 ----
+
+## Power on to OS Desktop or Console   
+
+Q. What steps are involved from Power on to getting an OS Desktop?     
+
+Hint: OS, Boot Leader, BIOS/UEFI, Power On, OS Desktop/console, Loading Sub-systems, Boot Loader Chain    
+
+---- 
 
 ## Partition Table   
 How can we see the partition table using the command line?   
