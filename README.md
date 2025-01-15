@@ -2,8 +2,15 @@
 Discussions for dual boot systems.    
 
    * [Dualboot](#dualboot)
-      * [Recommend Dual Boot Setup](#recommend-dual-boot-setup)
-       
+      * [Recommended Dual Boot Setup](#recommended-dual-boot-setup)
+      * [On MBR vs GPT](#on-mbr-vs-GPT)
+      * [On BIOS vs UEFI](#on-bios-vs-uefi)
+      * [Virtual Install](#virtual-install)
+      * [Partition Table](#partition-table)
+      * [Sync clock across boots](#sync-clock-across-boots)
+      * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read--only-Windows-partition-or-locked-NTFS-partition)
+      * [System not booting to Linux or only booting to Windows](#system-not-booting-to-Linux-or-only-booting-to-Windows)
+      * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
 ## Recommended Dual Boot Setup   
 The most recommended setup for dual boot is Windows + Linux (Ubuntu/Fedora/RedHat/Mint).   
@@ -15,7 +22,7 @@ Install Linux (try Ubuntu) alongside Windows. You should keep a shared partition
 
 [Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)    
 
-## MBR v/s GPT    
+## On MBR vs GPT    
 A HDD/SSD/SCSI disk should be partitioned (to define disk structure) and formatted (to create file system) before it can be used.    
 
 Master Boot Record (MBR) and GUID Partition Table (GPT) are two partitioning styles.   
@@ -26,7 +33,7 @@ When using GPT, these limitations are mainly dependent on the Operating system a
 
 ----
 
-## On BIOS v/s UEFI  
+## On BIOS vs UEFI  
 
 Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.  
 [UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on the Ubuntu community gives some insights into UEFI booting, dual boot, and secure boot.  
@@ -35,7 +42,7 @@ A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-differ
 
 ----
 
-## Virtual install   
+## Virtual Install   
 If you are unsure of dual boot, you can install Linux on a VM using some virtualization software such as Oracle Virtual Box or VMware Workstation. Once you get familiar and hands-on with Linux, you can dual-boot your system.   
 
 Even till 2024, dual boot systems are not shipped. There is no reason to worry about dual boot, as Ubuntu and other distribution communities have good support for this.   
@@ -82,7 +89,7 @@ timedatectl
 ```
 ---- 
 
-## Locked or read-only Windows partition or a locked NTFS partition    
+## Locked or read-only Windows partition or locked NTFS partition    
 
 Sometimes a particular partition cannot be accessed or it is read-only, no write or update is alowed in a dual booted system with Windows. An unclean shutdown from the Windows filesystem or hibernation or fast boot enabled in Windows or incomplete update possibly gone wrong or a similar event can render an NTFS/FAT partition exclusively locked or read-only or inaccessible.   
 
@@ -139,7 +146,7 @@ TODO: Solving this read-only (or sometimes disappeared partition in GUI) situati
 * [Recovery options in Windows](https://support.microsoft.com/en-us/windows/recovery-options-in-windows-31ce2444-7de3-818c-d626-e3b5a3024da5)   
 ----
 
-## System not booting to Linux, only booting to Windows   
+## System not booting to Linux or only booting to Windows   
 
 After dual boot (Windows and Linux), if the system is booting to Windowcertains OS only, you should check two things first.  
  (i) BIOS: check if Windows Boot manager (single boot loader) is selected to boot or sequence boot loaders with first boot loader from linux (dual boot loader). GRUB allows chaining boot loaders.   
@@ -151,7 +158,7 @@ Before you reinstall Windows, try auto repair / reset PC / uninstall recent feat
 
 ----
 
-## How to repair Boot Loader   
+## How to Repair Boot Loader   
 
 You can check [Boot Repair](https://www.howtogeek.com/114884/how-to-repair-grub2-when-ubuntu-wont-boot/) utiity with GUI. Using bootable USB drive, boot your system and install Boot Repair. Here is another tutorial to [repair GRUB](https://linuxhint.com/ubuntu_boot_repair_tutorial/) for most of the times.  
 Despite all these, sometimes things happen we hope they do not happen. Dual boot systems are not shipped and they are not tested for dual boot normally. Yet all that magic works. Do not loose heart, do not shout at people, if system crashes and you cannot recover. Rebuild it.    
