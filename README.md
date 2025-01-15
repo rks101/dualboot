@@ -1,8 +1,8 @@
 # dualboot
 Discussions for dual boot systems.    
 
-    * [Dualboot](#dualboot)
-       * [Recommeded Dual Boot Setup](#recommednded-dual-boot-setup)
+   * [Dualboot](#dualboot)
+      * [Recommend Dual Boot Setup](#recommend-dual-boot-setup)
        
 
 ## Recommended Dual Boot Setup   
