@@ -8,7 +8,7 @@ Discussions for dual boot systems.
       * [Virtual Install](#virtual-install)
       * [Partition Table](#partition-table)
       * [Sync clock across boots](#sync-clock-across-boots)
-      * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read--only-Windows-partition-or-locked-NTFS-partition)
+      * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read-only-Windows-partition-or-locked-NTFS-partition)
       * [System not booting to Linux or only booting to Windows](#system-not-booting-to-Linux-or-only-booting-to-Windows)
       * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
@@ -89,7 +89,7 @@ timedatectl
 ```
 ---- 
 
-## Locked or read-only Windows partition or locked NTFS partition    
+## Locked or read only Windows partition or locked NTFS partition    
 
 Sometimes a particular partition cannot be accessed or it is read-only, no write or update is alowed in a dual booted system with Windows. An unclean shutdown from the Windows filesystem or hibernation or fast boot enabled in Windows or incomplete update possibly gone wrong or a similar event can render an NTFS/FAT partition exclusively locked or read-only or inaccessible.   
 
