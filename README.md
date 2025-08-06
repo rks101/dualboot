@@ -93,8 +93,16 @@ After you have rebuilt the system by installing multiple operating systems, and 
 
 ```
 timedatectl set-local-rtc 1 --adjust-system-clock
-
-timedatectl
+```
+```
+$ timedatectl 
+               Local time: Tue 2020-08-05 19:59:10 IST
+           Universal time: Tue 2020-08-05 14:29:10 UTC
+                 RTC time: Tue 2020-08-05 14:29:10
+                Time zone: Asia/Kolkata (IST, +0530)
+System clock synchronized: yes                          <== notice yes for synched clock across OS boot
+              NTP service: active
+          RTC in local TZ: no
 ```
 ---- 
 
