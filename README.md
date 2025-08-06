@@ -14,14 +14,16 @@ Discussions for dual boot systems.
       * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
 ## Recommended Dual Boot Setup   
-The most recommended setup for dual boot is Windows + Linux (Ubuntu/Fedora/RedHat/Mint).   
+The most recommended setup for dual boot is Windows (first) + Linux (Ubuntu/Fedora/RedHat/Mint) (second). Windows OS has a single boot loader, knows Windows realm. Linux distributions offer a dual boot loader - GRUB or LILO that knows both Windows and Linux realms (multiple file systems).    
 
 Install Windows first on your desktop/laptop. While installing Windows, keep an unformatted partition of 30 GB or more for Linux distribution and a shared data partition of suitable size. If you have Windows pre-installed, and it is on a single disk (HDD/SSD), shrink the volume carefully using the Computer Management utility to create space for Linux and the shared partition.  
-Install Linux (try Ubuntu) alongside Windows. You should keep a shared partition that is accessible or shared for both OSes.  
+Install Linux (try Ubuntu) alongside Windows. You should keep a shared partition that is accessible or shared for both OSes.   
 
 [Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) has listed out some steps. Credits: Ankit Gupta     
 
-[Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)    
+People buy Mac and can install Windows later :) [Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)    
+
+----
 
 ## On MBR vs GPT    
 A HDD/SSD/SCSI disk should be partitioned (to define disk structure) and formatted (to create file system) before it can be used.    
@@ -54,9 +56,18 @@ Even till 2024, dual boot systems are not shipped. There is no reason to worry a
 
 Q. What steps are involved from Power on to getting an OS Desktop or console login?     
 
-Hint: OS, Boot Leader, BIOS/UEFI, Power On, OS Desktop/console, Loading Sub-systems, Boot Loader Chain    
+Correct this sequence: OS Image, Boot Loader, BIOS/UEFI, Power On, OS Desktop/console login, User Apps, OS Sub-systems,    
 
----- 
+A. 
+- Power On, run POST (Power On Self Test) checks (is power there, is battery installed, are compute/memory/network/store there, etc.),    
+- BIOS/UEFI wakes up, knows boot sequence settings and boot loader   
+- Boot Loader / Boot Loader Chain tells where to get OS image from,   
+- OS Image is loaded,    
+- Loading Sub-systems (power, file system, memory, network, audio, GUI, long list of drivers),   
+- OS Desktop/console login    
+- User applications   
+
+----
 
 ## Partition Table   
 How can we see the partition table using the command line?   
@@ -66,17 +77,17 @@ Note:- This output shows a nice example of disk virtualisation - a single physic
 ```
 $ sudo fdisk -l 
 ............
-Disk /dev/sda: 931.53 GiB, 1000204886016 bytes, 1953525168 sectors
+Disk /dev/sda: 931.53 GiB, 1000204886016 bytes, 1953525168 sectors                     <= a SATA HDD 
 Disk model: WDC WD10SPZX-75Z
 Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 4096 bytes
 I/O size (minimum/optimal): 4096 bytes / 4096 bytes
-Disklabel type: gpt
+Disklabel type: gpt                                                                    <= partition style 
 Disk identifier: 082Z74ZF-EZ78-4Z77-9ZD1-6Z110Z47CFZE
 
 Device          Start        End    Sectors   Size Type
 /dev/sda1        2048     923647     921600   450M Windows recovery environment
-/dev/sda2      923648    1128447     204800   100M EFI System
+/dev/sda2      923648    1128447     204800   100M EFI System                          <= EFI/UEFI (replaced BIOS) 
 /dev/sda3     1128448    1161215      32768    16M Microsoft reserved
 /dev/sda4     1161216  306162323  305001108 145.4G Microsoft basic data                 <= Windows partition, NTFS 
 /dev/sda5   306163712  307199999    1036288   506M Windows recovery environment
@@ -85,6 +96,30 @@ Device          Start        End    Sectors   Size Type
 /dev/sda8  1393702912 1953523711  559820800   267G Linux filesystem                     <= Linux everyday partition 
 ```
 In the output of fdisk, look for **Disk /dev/sda** and ignore entries listed for loop devices.   
+
+For Solid State Drives (SSD), you will see entries as **/dev/nvme**    
+
+```
+Disk /dev/nvme0n1: 476.94 GiB, 512110190592 bytes, 1000215216 sectors
+Disk model: BC711 NVMe SK hynix 512GB               
+Units: sectors of 1 * 512 = 512 bytes
+Sector size (logical/physical): 512 bytes / 512 bytes
+I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disklabel type: gpt
+Disk identifier: 90AC9BEA-BE65-4C42-8C6D-4CE4C6349709
+
+Device             Start        End   Sectors   Size Type
+/dev/nvme0n1p1      2048     514047    512000   250M EFI System                           <= EFI/UEFI partition, contains boot info 
+/dev/nvme0n1p2   1562624    1824767    262144   128M Microsoft reserved
+/dev/nvme0n1p3   1824768  483047423 481222656 229.5G Microsoft basic data                 <= Windows partition, NTFS file system 
+/dev/nvme0n1p4 995047424  997257215   2209792   1.1G Windows recovery environment
+/dev/nvme0n1p5 997261312 1000187903   2926592   1.4G Windows recovery environment
+/dev/nvme0n1p6 483047424  547047423  64000000  30.5G Linux swap                           <= Linux Swap 
+/dev/nvme0n1p7 547047424  995047423 448000000 213.6G Linux filesystem                     <= Linux everyday partition, ext4 file system 
+
+Partition table entries are not in disk order.
+
+```
 
 ----
 
