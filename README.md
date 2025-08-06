@@ -58,9 +58,9 @@ Q. What steps are involved from Power on to getting an OS Desktop or console log
 
 Correct this sequence: OS Image, Boot Loader, BIOS/UEFI, Power On, OS Desktop/console login, User Apps, OS Sub-systems,    
 
-A. 
+A. Power On to User applications:     
 - Power On, run POST (Power On Self Test) checks (is power there, is battery installed, are compute/memory/network/store there, etc.),    
-- BIOS/UEFI wakes up, knows boot sequence settings and boot loader   
+- BIOS/UEFI wakes up, knows boot sequence settings and boot loader,       
 - Boot Loader / Boot Loader Chain tells where to get OS image from,   
 - OS Image is loaded,    
 - Loading Sub-systems (power, file system, memory, network, audio, GUI, long list of drivers),   
@@ -87,7 +87,7 @@ Disk identifier: 082Z74ZF-EZ78-4Z77-9ZD1-6Z110Z47CFZE
 
 Device          Start        End    Sectors   Size Type
 /dev/sda1        2048     923647     921600   450M Windows recovery environment
-/dev/sda2      923648    1128447     204800   100M EFI System                          <= EFI/UEFI (replaced BIOS) 
+/dev/sda2      923648    1128447     204800   100M EFI System                          <= EFI/UEFI (replaced BIOS), /boot is mounted here 
 /dev/sda3     1128448    1161215      32768    16M Microsoft reserved
 /dev/sda4     1161216  306162323  305001108 145.4G Microsoft basic data                 <= Windows partition, NTFS 
 /dev/sda5   306163712  307199999    1036288   506M Windows recovery environment
@@ -109,7 +109,7 @@ Disklabel type: gpt
 Disk identifier: 90AC9BEA-BE65-4C42-8C6D-4CE4C6349709
 
 Device             Start        End   Sectors   Size Type
-/dev/nvme0n1p1      2048     514047    512000   250M EFI System                           <= EFI/UEFI partition, contains boot info 
+/dev/nvme0n1p1      2048     514047    512000   250M EFI System                           <= EFI/UEFI partition, /boot is mounted here, contains boot info  
 /dev/nvme0n1p2   1562624    1824767    262144   128M Microsoft reserved
 /dev/nvme0n1p3   1824768  483047423 481222656 229.5G Microsoft basic data                 <= Windows partition, NTFS file system 
 /dev/nvme0n1p4 995047424  997257215   2209792   1.1G Windows recovery environment
