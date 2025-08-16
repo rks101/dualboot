@@ -67,6 +67,8 @@ A. Power On to User applications:
 - OS Desktop/console login    
 - User applications   
 
+[Boot Process - a long story](https://www.youtube.com/watch?v=Masm_ec0JiQ&t=204s)     
+
 ----
 
 ## Partition Table   
