@@ -11,6 +11,7 @@ Discussions for dual boot systems.
       * [Sync clock across boots](#sync-clock-across-boots)
       * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read-only-Windows-partition-or-locked-NTFS-partition)
       * [System not booting to Linux or only booting to Windows](#system-not-booting-to-Linux-or-only-booting-to-Windows)
+      * [Entending EFI system partition](#extending-efi-system-partition)
       * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
 ## Recommended Dual Boot Setup   
@@ -209,6 +210,12 @@ After dual boot (Windows and Linux), if the system is booting to Windowcertains 
 Apart from these two, it is possible that boot loader did not install correctly. Also, this may happen if you had to reinstall Windows post dual boot. You should repair boot loader.   
 
 Before you reinstall Windows, try auto repair / reset PC / uninstall recent feature update / system restore to last safe point. One of this may work or none of them may work. If you are keeping this os, you may disable auto updates.   
+
+----
+
+## Extending EFI system partition    
+
+EFI system partition (ESP) by Windows 11 may be too small for dual boot or Firmware Update. Here is a detailed discussion on [resizing ESP](https://superuser.com/questions/1230741/how-to-resize-the-efi-system-partition).    
 
 ----
 
