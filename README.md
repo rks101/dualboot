@@ -6,7 +6,7 @@ Discussions for dual boot systems.
       * [On MBR vs GPT](#on-mbr-vs-GPT)
       * [On BIOS vs UEFI](#on-bios-vs-uefi)
       * [Virtual Install](#virtual-install)
-      * [Power on to OS Desktop or Console](#power-on-to-os-desktop-or-console)
+      * [Power on to user applications](#power-on-to-user-applications)
       * [Partition Table](#partition-table)
       * [Sync clock across boots](#sync-clock-across-boots)
       * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read-only-Windows-partition-or-locked-NTFS-partition)
@@ -16,25 +16,26 @@ Discussions for dual boot systems.
       * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
 ## Recommended Dual Boot Setup   
-The most recommended setup for dual boot is Windows (first) + Linux (Ubuntu/Fedora/RedHat/Mint) (second). Windows OS has a single boot loader, knows Windows realm. Linux distributions offer a dual boot loader - GRUB or LILO that knows both Windows and Linux realms (multiple file systems).    
+The most recommended setup for dual boot is Windows (first) and Linux (Debian/Ubuntu/Fedora/RedHat/Mint) (second). Windows OS has a single boot loader, which knows Windows realm (ntfs file system). Linux distributions offer a dual-boot loader, such as GRUB or LILO, that recognizes both Windows and Linux realms (multiple file systems).    
 
-Install Windows first on your desktop/laptop. While installing Windows, keep an unformatted partition of 30 GB or more for Linux distribution and a shared data partition of suitable size. If you have Windows pre-installed, and it is on a single disk (HDD/SSD), shrink the volume carefully using the Computer Management utility to create space for Linux and the shared partition.  
+Install Windows first on your desktop/laptop. While installing Windows, keep an unformatted partition of 30 GB or more for Linux distribution and a shared data partition of a suitable size. If you have Windows pre-installed, and it is on a single disk (HDD/SSD), shrink the volume carefully using the Computer Management utility to create space for Linux and the shared partition.  
+
 Install Linux (try Ubuntu) alongside Windows. You should keep a shared partition that is accessible or shared for both OSes.   
 
-[Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) has listed out some steps. Credits: Ankit Gupta     
+[Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) outlines some steps. Old doc may need update. Credits: Ankit Gupta     
 
 People buy Mac and can install Windows later :) [Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)    
 
 ----
 
 ## On MBR vs GPT    
-A HDD/SSD/SCSI disk should be partitioned (to define disk structure) and formatted (to create file system) before it can be used.    
+A HDD/SSD/SCSI disk should be partitioned (to define disk structure) and formatted (to create a file system) before it can be used.    
 
 Master Boot Record (MBR) and GUID Partition Table (GPT) are two partitioning styles.   
 
-MBR allowed only four primary partitions on a disk and worked with disk sizes up to 2TB. MBR had a peculiar limitation. MBR allowed having a boot sector (for using the first boot loader) in the initial geometry of the disk (say first 1024 cylinders). Now, if this information is overwritten, you need to recreate or "repair" boot loader information. MBR was dependent on BIOS.     
+MBR allowed only four primary partitions on a disk and worked with disk sizes up to 2TB. MBR had a peculiar limitation. MBR allowed having a boot sector (for using the first boot loader) in the initial geometry of the disk (say, first 1024 cylinders). Now, if this information is overwritten, you need to recreate or "repair" the boot loader information. MBR was dependent on BIOS.     
 
-When using GPT, these limitations are mainly dependent on the Operating system and file system. Windows may allow 128 partitions and much larger file sizes. GPT stores a random string for each disk partition, and the boot-related details are spread across disk geometry, having multiple copies. GPT relies on UEFI.    
+When using GPT, these limitations are mainly dependent on the Operating system and file system. Windows may support up to 128 partitions and significantly larger file sizes. GPT stores a random string for each disk partition, and boot-related details are spread across the disk geometry, resulting in multiple copies. GPT relies on UEFI.    
 
 ----
 
@@ -43,7 +44,7 @@ When using GPT, these limitations are mainly dependent on the Operating system a
 Slowly, Legacy BIOS+MBR mode boot has moved to UEFI+GPT mode.  
 [UEFI](https://help.ubuntu.com/community/UEFI) - Unified Extensible Firmware Interface (UEFI) is the next generation of BIOS firmware and will eventually replace Legacy BIOS. This page on the Ubuntu community gives some insights into UEFI booting, dual boot, and secure boot.  
 
-A 5 minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions, and partition tables.  
+A 5-minute [story](https://www.freecodecamp.org/news/mbr-vs-gpt-whats-the-difference-between-an-mbr-partition-and-a-gpt-partition-solved/) on partitions and partition tables.  
 
 ----
 
@@ -54,7 +55,7 @@ Even till 2024, dual boot systems are not shipped. There is no reason to worry a
 
 ----
 
-## Power on to OS Desktop or Console   
+## Power on to user applications   
 
 Q. What steps are involved from Power on to getting an OS Desktop or console login?     
 
@@ -122,7 +123,6 @@ Device             Start        End   Sectors   Size Type
 /dev/nvme0n1p7 547047424  995047423 448000000 213.6G Linux filesystem                     <= Linux everyday partition, ext4 file system 
 
 Partition table entries are not in disk order.
-
 ```
 
 ----
@@ -217,6 +217,8 @@ Before you reinstall Windows, try auto repair / reset PC / uninstall recent feat
 ## Extending EFI system partition    
 
 EFI system partition (ESP) by Windows 11 may be too small for dual boot or Firmware Update. Here is a detailed discussion on [resizing ESP](https://superuser.com/questions/1230741/how-to-resize-the-efi-system-partition).    
+
+[Firmware update error - ESP too small](https://github.com/fwupd/fwupd/wiki/LVFS-Triaged-Issue:-ESP-too-small) or /boot/efi does not have sufficient space    
 
 ----
 
