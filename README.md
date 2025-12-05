@@ -12,6 +12,7 @@ Discussions for dual boot systems.
       * [Locked or read-only Windows partition or locked NTFS partition](#locked-or-read-only-Windows-partition-or-locked-NTFS-partition)
       * [System not booting to Linux or only booting to Windows](#system-not-booting-to-Linux-or-only-booting-to-Windows)
       * [Entending EFI system partition](#extending-efi-system-partition)
+      * [Firmware Update](#firmware-update)
       * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
 ## Recommended Dual Boot Setup   
@@ -216,6 +217,156 @@ Before you reinstall Windows, try auto repair / reset PC / uninstall recent feat
 ## Extending EFI system partition    
 
 EFI system partition (ESP) by Windows 11 may be too small for dual boot or Firmware Update. Here is a detailed discussion on [resizing ESP](https://superuser.com/questions/1230741/how-to-resize-the-efi-system-partition).    
+
+----
+
+## Firmware Update 
+
+```
+sudo fwupdmgr get-devices   
+
+sudo fwupdmgr get-updates   
+
+sudo fwupdmgr update   
+```
+
+```
+$sudo fwupdmgr get-devices   
+
+Dell Inc. Latitude 5420
+│
+├─11th Gen Intel Core™ i5-1135G7 @ 2.40GHz:
+│     Device ID:          3027
+│     Current version:    0x000000bc
+│     Vendor:             Intel
+│     GUIDs:              1234 ← CPUID\PRO_0&FAM_06&MOD_8C
+│                         1df9 ← CPUID\PRO_0&FAM_06&MOD_8C&STP_1
+│     Device Flags:       • Internal device
+│   
+├─BC711 NVMe SK hynix 512GB:
+│     Device ID:          1317
+│     Summary:            NVM Express solid state drive
+│     Current version:    41002131
+│     Vendor:             SK hynix (NVME:0x1C5C)
+│     Install Duration:   6 seconds
+│     Serial Number:      3A07
+│     Update State:       Needs reboot         <== Restart required status 
+│     Last modified:      2024-12-05 10:20
+│     GUIDs:              3334 ← STORAGE-DELL-110001
+│                         0003
+│     Device Flags:       • Updatable
+│                         • System requires external power source
+│                         • Supported on remote server
+│                         • Needs a reboot after installation
+│                         • Signed Payload
+│   
+├─System Firmware:
+│ │   Device ID:          71e98
+│ │   Summary:            UEFI System Resource Table device (updated via NVRAM)
+│ │   Current version:    1.45.0
+│ │   Minimum Version:    1.45.0
+│ │   Vendor:             Dell (DMI:Dell Inc.)
+│ │   Update State:       Failed              <== Should be Success 
+│ │   Update Error:       /boot/efi does not have sufficient space, required 73.5 MB, got 22.6 MB 
+│ │   Last modified:      2024-12-05 10:21
+│ │   GUID:               1091
+│ │   Device Flags:       • Internal device
+│ │                       • Updatable
+│ │                       • System requires external power source
+│ │                       • Supported on remote server
+│ │                       • Needs a reboot after installation
+│ │                       • Cryptographic hash verification is available
+│ │                       • Device is usable for the duration of the update
+│ │   Device Requests:    • Message
+│ │ 
+│ ├─BootGuard Configuration:
+│ │     Device ID:        80753
+│ │     Current version:  20
+│ │     Vendor:           Intel Corporation (MEI:0x8086)
+│ │     GUIDs:            ec65
+│ │                       0f70 ← MEI\VEN_8086&DEV_A0E0
+│ │                       6d76 ← MEI\VEN_8086&DEV_A0E0&SUBSYS_10280A20
+│ │     Device Flags:     • Internal device
+│ │   
+│ └─UEFI dbx:
+│       Device ID:        a590
+│       Summary:          UEFI revocation database
+│       Current version:  20241101
+│       Minimum Version:  20241101
+│       Vendor:           UEFI:Microsoft
+│       Install Duration: 1 second
+│       GUIDs:            cca7 ← UEFI\CRT_SOMETHING&ARCH_X64
+│                         9731 ← UEFI\CRT_SOMETHING&ARCH_X64
+│       Device Flags:     • Internal device
+│                         • Updatable
+│                         • Needs a reboot after installation
+│                         • Device is usable for the duration of the update
+│                         • Only version upgrades are allowed
+│                         • Signed Payload
+│     
+├─TPM:
+│     Device ID:          34d6
+│     Current version:    1.258.0.0
+│     Vendor:             ST Microelectronics (TPM:STM)
+│     GUIDs:              4c32 ← TPM\VEN_STM&DEV_0001
+│                         e918 ← TPM\VEN_STM&MOD_
+│                         f319 ← TPM\VEN_STM&DEV_0001&VER_2.0
+│                         3c48 ← TPM\VEN_STM&MOD_&VER_2.0
+│                         cf70 ← 0a20-2.0
+│     Device Flags:       • Internal device
+│                         • Updatable
+│                         • System requires external power source
+│                         • Needs a reboot after installation
+│                         • Device can recover flash failures
+│                         • Full disk encryption secrets may be invalidated when updating
+│                         • Signed Payload
+│   
+├─TigerLake-LP GT2 [Iris Xe Graphics]:
+│     Device ID:          e00a
+│     Current version:    01
+│     Vendor:             Intel Corporation (PCI:0x8086)
+│     GUIDs:              aa53 ← PCI\VEN_8086&DEV_9A49
+│                         63df ← PCI\VEN_8086&DEV_9A49&SUBSYS_10280A20
+│     Device Flags:       • Internal device
+│                         • Cryptographic hash verification is available
+│   
+├─UEFI Device Firmware:
+│     Device ID:          409d
+│     Summary:            UEFI System Resource Table device (updated via NVRAM)
+│     Current version:    188
+│     Minimum Version:    188
+│     Vendor:             DMI:Dell Inc.
+│     Update State:       Success
+│     GUID:               ecd0
+│     Device Flags:       • Internal device
+│                         • Updatable
+│                         • System requires external power source
+│                         • Needs a reboot after installation
+│                         • Device is usable for the duration of the update
+│     Device Requests:    • Message
+│   
+├─UEFI Device Firmware:
+│     Device ID:          e307
+│     Summary:            UEFI System Resource Table device (updated via NVRAM)
+│     Current version:    1090527537
+│     Minimum Version:    1090527537
+│     Vendor:             DMI:Dell Inc.
+│     Update State:       Success
+│     GUID:               003
+│     Device Flags:       • Internal device
+│                         • Updatable
+│                         • System requires external power source
+│                         • Needs a reboot after installation
+│                         • Device is usable for the duration of the update
+│     Device Requests:    • Message
+│   
+────────────────────────────────────────────────
+Devices that were not updated correctly:
+ • System Firmware (1.45.0 → 1.49.0)
+Devices that have been updated successfully:
+ • System Firmware (1.34.1 → 1.39.1)
+
+```
 
 ----
 
