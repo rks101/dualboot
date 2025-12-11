@@ -390,9 +390,10 @@ Despite all these, sometimes things happen we hope they do not happen. Dual boot
 Recently, I lost some data related to my PhD and work after a keyboard repair. Locked NVram detected on Ubuntu and boot-repair could not repair. I fact it was not recognizing Ubuntu boot itself, partition remained read-only. I had to rebuild system.   
 
 ----
-
+<!--
 ## Password recovery options   
 [Win 10](https://www.top-password.com/knowledge/forgot-windows-10-local-administrator-password.html) 
 and [another link](https://www.wimware.com/how-to/reset-windows-10-enterprise-password.html)   
 
 ----
+-->
