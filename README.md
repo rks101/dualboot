@@ -2,6 +2,7 @@
 Discussions for dual boot systems.    
 
    * [Dualboot](#dualboot)
+      * [Linux Distributions](#linux-distributions)
       * [Recommended Dual Boot Setup](#recommended-dual-boot-setup)
       * [On MBR vs GPT](#on-mbr-vs-GPT)
       * [On BIOS vs UEFI](#on-bios-vs-uefi)
@@ -15,6 +16,14 @@ Discussions for dual boot systems.
       * [Firmware Update](#firmware-update)
       * [How to Repair Boot Loader](#how-to-repair-boot-loader)
 
+## Linux Distributions 
+
+[Linux Distributions](https://www.linux.org/pages/download/) and [Distrowatch](https://distrowatch.com/)    
+
+People use Debian or Ubuntu for everyday tasks and Kali Linux for security-related purposes.    
+
+----
+
 ## Recommended Dual Boot Setup   
 The most recommended setup for dual boot is Windows (first) and Linux (Debian/Ubuntu/Fedora/RedHat/Mint) (second). Windows OS has a single boot loader, which knows Windows realm (ntfs file system). Linux distributions offer a dual-boot loader, such as GRUB or LILO, that recognizes both Windows and Linux realms (multiple file systems).    
 
@@ -22,10 +31,11 @@ Install Windows first on your desktop/laptop. While installing Windows, keep an 
 
 Install Linux (try Ubuntu) alongside Windows. You should keep a shared partition that is accessible or shared for both OSes.   
 
+<!--
 [Dual Boot.pdf](https://github.com/rks101/dualboot/blob/main/Dual%20Boot.pdf) outlines some steps. Old doc may need update. Credits: Ankit Gupta     
 
 People buy Mac and can install Windows later :) [Install Windows 10 on Mac with Boot Camp Assistant](https://support.apple.com/en-in/HT201468)    
-
+-->
 ----
 
 ## On MBR vs GPT    
