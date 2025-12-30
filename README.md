@@ -22,6 +22,8 @@ Discussions for dual boot systems.
 
 People use Debian or Ubuntu for everyday tasks and Kali Linux for security-related purposes.    
 
+[Debian Mirrors](https://www.debian.org/CD/http-ftp/#mirrors)   
+
 ----
 
 ## Recommended Dual Boot Setup   
